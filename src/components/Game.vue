@@ -33,6 +33,7 @@
         <el-row style="margin:50px 0 20px 0;">
             <b><span>统计信息：</span></b><span>当前速度：<el-tag>{{typeSpeed}}</el-tag> 字/分钟；</span><span> 正确率：<el-tag>{{rightPercent}}%</el-tag>； </span>  
             <el-button @click="reset">重置</el-button>     
+            <el-button @click="changeModel">切换错误模式{{this.errorZigenList.length}}</el-button>
         </el-row>
         <el-collapse value = '1'>
                 <el-collapse-item title="字根图" name="1">
@@ -167,7 +168,9 @@
                     {t1: 'D（在）',t2: 'K（中）',t3: 'E（有）',t4: 'I（不）',t5: 'V（发）',},
                     {t1: 'S（要）',t2: 'L（国）',t3: 'W（人）',t4: 'O（为）',t5: 'C（以）',},
                     {t1: 'A（工）',t2: 'M（同）',t3: 'Q（我）',t4: 'P（这）',t5: 'X（经）',},
-                ]
+                ],
+                errorModel: false,
+                errorZigenList: {}
             }
         },
         props:{
@@ -231,6 +234,7 @@
                     this.isRight = true;
                     this.rightTimes++;
                 }else{
+                    this.addZigenToErrorList(this.d1)
                     this.isRight = false;
                     this.errorTimes++;
                     this.errorSumTimes++;
@@ -240,18 +244,36 @@
                 }
                 this.intext = '';               
             },
+            addZigenToErrorList(d){
+              var thisList = this.errorZigenList[d[0]]
+              if (thisList === undefined) {
+                thisList = []
+              }
+              if (!thisList.includes(d[1])) {
+                thisList.push(d[1]);
+              }
+              this.errorZigenList[d[0]] = thisList;
+              console.log(d)
+              console.log(this.errorZigenList)
+            },
             reset(){
                 this.rightTimes=0;
                 this.errorSumTimes = 0;
+                this.errorModel = false;
+                this.errorZigenList = {};
                 this.lastRightDate = new Date();
                 this.isRight = true;
                 document.getElementById("intext").focus();
+            },
+            changeModel(){
+                this.errorModel = true;
+                this.getData();
             },
             getRandom(){
                 var thisList = list;
                 switch(this.gameModel){
                     case "zigen":
-                        thisList = list;
+                        thisList = this.errorModel ? this.errorZigenList : list;
                         break;
                     case "yiji":
                         thisList = listYi;
