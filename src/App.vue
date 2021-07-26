@@ -1,34 +1,34 @@
 <template>
   <el-container>
-    <el-header class="el-menu-demo">
-      <el-row>
-        <el-col style="color:#fff" :xs="24" :sm="{span:20, offset: 2}" :md="{span: 18, offset: 3}" :xl="{span: 12, offset: 6}" ><h1 style="margin:0 20px; float:left; line-height:60px">五笔练习</h1>
-        <el-menu
-          :default-active="activeIndex"
-          class="el-menu-demo"
-          mode="horizontal"
-          @select="handleSelect"
-          background-color="#545c64"
-          text-color="#fff"
-          active-text-color="#ffd04b">
-            <el-submenu index="0" v-if="windowWidth < 640">
-              <template slot="title"><i style="color:#fff" class="el-icon-s-unfold"></i></template>
-              <el-menu-item index="1">字根练习</el-menu-item>
-              <el-menu-item index="2">一级简码</el-menu-item>
-              <el-menu-item index="3">二级简码</el-menu-item>
-              <el-menu-item index="4" ><i style="color:#F56C6C;" class="el-icon-document"></i><a href="https://wubi.yantuz.cn" style="color:#F56C6C; text-decoration: none;" target="_blank"><b>五笔7天速成</b></a></el-menu-item>
-            </el-submenu>
-            <template v-else>
-              <el-menu-item index="1">字根练习</el-menu-item>
-              <el-menu-item index="2">一级简码</el-menu-item>
-              <el-menu-item index="3">二级简码</el-menu-item>
-              <el-menu-item index="4" ><i style="color:#F56C6C;" class="el-icon-document"></i><a href="https://wubi.yantuz.cn" style="color:#F56C6C; text-decoration: none;" target="_blank"><b>五笔7天速成</b></a></el-menu-item>
-            </template>
-          </el-menu>
-        </el-col>
-      </el-row>
+<!--    <el-header class="el-menu-demo">-->
+<!--      <el-row>-->
+<!--        <el-col style="color:#fff" :xs="24" :sm="{span:20, offset: 2}" :md="{span: 18, offset: 3}" :xl="{span: 12, offset: 6}" ><h1 style="margin:0 20px; float:left; line-height:60px">五笔练习</h1>-->
+<!--        <el-menu-->
+<!--          :default-active="activeIndex"-->
+<!--          class="el-menu-demo"-->
+<!--          mode="horizontal"-->
+<!--          @select="handleSelect"-->
+<!--          background-color="#545c64"-->
+<!--          text-color="#fff"-->
+<!--          active-text-color="#ffd04b">-->
+<!--            <el-submenu index="0" v-if="windowWidth < 640">-->
+<!--              <template slot="title"><i style="color:#fff" class="el-icon-s-unfold"></i></template>-->
+<!--              <el-menu-item index="1">字根练习</el-menu-item>-->
+<!--              <el-menu-item index="2">一级简码</el-menu-item>-->
+<!--              <el-menu-item index="3">二级简码</el-menu-item>-->
+<!--              <el-menu-item index="4" ><i style="color:#F56C6C;" class="el-icon-document"></i><a href="https://wubi.yantuz.cn" style="color:#F56C6C; text-decoration: none;" target="_blank"><b>五笔7天速成</b></a></el-menu-item>-->
+<!--            </el-submenu>-->
+<!--            <template v-else>-->
+<!--              <el-menu-item index="1">字根练习</el-menu-item>-->
+<!--              <el-menu-item index="2">一级简码</el-menu-item>-->
+<!--              <el-menu-item index="3">二级简码</el-menu-item>-->
+<!--              <el-menu-item index="4" ><i style="color:#F56C6C;" class="el-icon-document"></i><a href="https://wubi.yantuz.cn" style="color:#F56C6C; text-decoration: none;" target="_blank"><b>五笔7天速成</b></a></el-menu-item>-->
+<!--            </template>-->
+<!--          </el-menu>-->
+<!--        </el-col>-->
+<!--      </el-row>-->
 
-    </el-header>
+<!--    </el-header>-->
     <el-main>
       <el-row>
         <el-col :xs="24" :sm="{span:20, offset: 2}" :md="{span: 18, offset: 3}" :xl="{span: 12, offset: 6}" >
@@ -36,7 +36,7 @@
         </el-col>
       </el-row>
     </el-main>
-    <el-footer style="text-align:center">&copy; {{new Date().getFullYear()}} <a href="https://yantuz.cn/">岩兔站</a></el-footer>
+<!--    <el-footer style="text-align:center">&copy; {{new Date().getFullYear()}} <a href="https://yantuz.cn/">岩兔站</a></el-footer>-->
   </el-container>
 </template>
 

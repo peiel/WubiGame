@@ -151,6 +151,8 @@
     export default {
         data() {
             return {
+                randomQueue: '',
+                rq_idx: 0,
                 d1: '',
                 d2: '',
                 d3: '',
@@ -267,28 +269,56 @@
             },
             changeModel(){
                 this.errorModel = true;
+                this.randomQueue = '';
                 this.getData();
             },
+            shuffle(array) {
+              var currentIndex = array.length,  randomIndex;
+
+              // While there remain elements to shuffle...
+              while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+
+                // And swap it with the current element.
+                [array[currentIndex], array[randomIndex]] = [
+                  array[randomIndex], array[currentIndex]];
+              }
+
+              return array;
+            },
             getRandom(){
-                var thisList = list;
-                switch(this.gameModel){
-                    case "zigen":
-                        thisList = this.errorModel ? this.errorZigenList : list;
-                        break;
-                    case "yiji":
-                        thisList = listYi;
-                        break;
-                    case "erji":
-                        return ["",listEr[Math.floor(Math.random() * listEr.length)]];
+              if (this.randomQueue === "") {
+                this.randomQueue = [];
+                let thisList = list;
+                switch (this.gameModel) {
+                  case "zigen":
+                    thisList = this.errorModel ? this.errorZigenList : list;
+                    break;
+                  case "yiji":
+                    thisList = listYi;
+                    break;
+                  case "erji":
+                    return ["", listEr[Math.floor(Math.random() * listEr.length)]];
                 }
-                
-                var returnVal = {};
-                var keyList = Object.keys(thisList);
-                var key = keyList[Math.floor(Math.random() * keyList.length)];
-                var values = thisList[key];
-                var value = values[Math.floor(Math.random() * values.length)];
-                returnVal[key]=value;
-                return [key,value];
+                for (let key in thisList) {
+                  let value = thisList[key];
+                  for (let item_key in value) {
+                    this.randomQueue.push([key, value[item_key]]);
+                  }
+                }
+                this.randomQueue = this.shuffle(this.randomQueue);
+                console.log("this.randomQueue >>>> ")
+                console.log(this.randomQueue)
+              }
+              let result = this.randomQueue[this.rq_idx++];
+              if (result === undefined) {
+                this.rq_idx = 0;
+                result = this.randomQueue[this.rq_idx++];
+              }
+              return result;
             }
 
         },  
